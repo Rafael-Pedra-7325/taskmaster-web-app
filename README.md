@@ -68,18 +68,19 @@ taskmaster/
 
 ---
 
-##🚀 Como Executar o Projeto
+## 🚀 Como Executar o Projeto
 
-# ==========================================
+```bash
+# ==============================================================================
 # 1. CLONAR O REPOSITÓRIO
-# ==========================================
-git clone https://github.com/Rafael-Pedra-7325/taskmaster-web-app.git
-
+# ==============================================================================
+git clone [https://github.com/Rafael-Pedra-7325/taskmaster-web-app.git](https://github.com/Rafael-Pedra-7325/taskmaster-web-app.git)
 cd taskmaster-web-app
 
-# ==========================================
-# 2. CONFIGURAR E EXECUTAR O BACK-END (API)
-# ==========================================
+
+# ==============================================================================
+# 2. CONFIGURAR E EXECUTAR O BACK-END (API REST)
+# ==============================================================================
 cd backend
 
 # Criar o ambiente virtual Python
@@ -91,20 +92,24 @@ python -m venv .venv
 # No Linux/macOS:
 source .venv/bin/activate
 
-# Instalar as dependências do servidor
+# Instalar dependências do projeto
 pip install fastapi uvicorn sqlalchemy pydantic
 
 # Iniciar o servidor de desenvolvimento
 uvicorn main:app --reload
 
-# O servidor rodará em: http://localhost:8000
-# Documentação Swagger disponível em: http://localhost:8000/docs
+# ------------------------------------------------------------------------------
+# 📍 A API estará rodando em: http://localhost:8000
+# 📄 Documentação Swagger UI em: http://localhost:8000/docs
+# ------------------------------------------------------------------------------
 
-# ==========================================
+
+# ==============================================================================
 # 3. EXECUTAR O FRONT-END
-# ==========================================
-# Mantenha o terminal do back-end rodando.
-# Em uma nova janela de terminal ou pelo navegador:
-#
+# ==============================================================================
+# IMPORTANTE: Mantenha o terminal do back-end rodando em segundo plano.
+# Em uma nova janela do terminal ou diretamente pelo seu sistema:
+
 # Opção A: Abra o arquivo 'frontend/index.html' diretamente no navegador.
-# Opção B: Abra a pasta no VS Code e clique com botão direito em 'index.html' -> "Open with Live Server".
+# Opção B: No VS Code, clique com o botão direito em 'index.html' -> "Open with Live Server".
+```
