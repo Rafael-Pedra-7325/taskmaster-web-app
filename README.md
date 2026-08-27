@@ -74,7 +74,7 @@ taskmaster/
 # ==============================================================================
 # 1. CLONAR O REPOSITÓRIO
 # ==============================================================================
-git clone [https://github.com/Rafael-Pedra-7325/taskmaster-web-app.git](https://github.com/Rafael-Pedra-7325/taskmaster-web-app.git)
+git clone https://github.com/Rafael-Pedra-7325/taskmaster-web-app.git
 cd taskmaster-web-app
 
 
