@@ -12,11 +12,8 @@ app = FastAPI(title="TaskMaster API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://127.0.0.1:5500",
-        "http://localhost:5500"
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -34,14 +31,14 @@ def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
     return db_task
 
 @app.put("/api/tasks/{task_id}", response_model=schemas.TaskResponse)
-def update_task(task_id: int, updated_task: schemas.TaskCreate, db: Session = Depends(get_db)):
+def update_task(task_id: int, updated_task: schemas.TaskUpdate, db: Session = Depends(get_db)):
     db_task = db.query(models.TaskModel).filter(models.TaskModel.id == task_id).first()
     if not db_task:
         raise HTTPException(status_code=404, detail="Tarefa não encontrada")
-    
-    for key, value in updated_task.model_dump().items():
+
+    for key, value in updated_task.model_dump(exclude_unset=True).items():
         setattr(db_task, key, value)
-        
+
     db.commit()
     db.refresh(db_task)
     return db_task
@@ -51,7 +48,7 @@ def delete_task(task_id: int, db: Session = Depends(get_db)):
     db_task = db.query(models.TaskModel).filter(models.TaskModel.id == task_id).first()
     if not db_task:
         raise HTTPException(status_code=404, detail="Tarefa não encontrada")
-    
+
     db.delete(db_task)
     db.commit()
     return None
