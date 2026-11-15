@@ -18,9 +18,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def health_check():
+    return {"status": "online", "docs": "/docs"}
+
 @app.get("/api/tasks", response_model=List[schemas.TaskResponse])
 def read_tasks(db: Session = Depends(get_db)):
-    return db.query(models.TaskModel).all()
+    return db.query(models.TaskModel).order_by(models.TaskModel.id.asc()).all()
 
 @app.post("/api/tasks", response_model=schemas.TaskResponse, status_code=status.HTTP_201_CREATED)
 def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
