@@ -1,4 +1,7 @@
-const API_URL = "http://localhost:8000/api/tasks";
+const isLocal = ["localhost", "127.0.0.1", ""].includes(window.location.hostname);
+const API_URL = isLocal
+    ? "http://localhost:8000/api/tasks"
+    : "https://SEU-BACKEND-NO-RENDER.onrender.com/api/tasks";
 
 const taskForm = document.getElementById("task-form");
 const taskList = document.getElementById("task-list");
@@ -30,6 +33,7 @@ function showFeedback(message, isError = false) {
 }
 
 async function fetchTasks() {
+    showFeedback("Carregando tarefas...");
     try {
         const response = await fetch(API_URL);
         if (!response.ok) {
@@ -39,7 +43,7 @@ async function fetchTasks() {
         renderTasks(tasks);
     } catch (error) {
         console.error("Erro ao carregar tarefas:", error);
-        showFeedback("Não foi possível conectar à API. Verifique se o back-end está rodando em http://localhost:8000.", true);
+        showFeedback("Não foi possível conectar à API. Se estiver usando plano gratuito, aguarde alguns segundos e recarregue a página.", true);
     }
 }
 
