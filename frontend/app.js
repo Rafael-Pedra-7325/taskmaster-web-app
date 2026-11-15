@@ -1,7 +1,7 @@
 const isLocal = ["localhost", "127.0.0.1", ""].includes(window.location.hostname);
 const API_URL = isLocal
     ? "http://localhost:8000/api/tasks"
-    : "https://SEU-BACKEND-NO-RENDER.onrender.com/api/tasks";
+    : "https://taskmaster-api-gmtn.onrender.com/api/tasks";
 
 const taskForm = document.getElementById("task-form");
 const taskList = document.getElementById("task-list");
